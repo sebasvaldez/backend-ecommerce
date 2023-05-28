@@ -11,5 +11,11 @@ app.use(indexRoutes);
 app.use("/api/", productsRoutes);
 app.use("/api/", userRoutes);
 
+
+//entra aqui si consulta una ruta que no existe
+app.use((req,res,next)=>{
+    res.status(404).json({message:'Endpoint no encontrada'})
+})
+
 app.listen(4000);
 console.log("Server is running on port 4000");

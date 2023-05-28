@@ -55,7 +55,7 @@ export const deleteProduct = async (req, res) => {
     ]);
 
     if (result.affctedRows > 0) {
-      res.send("Prodcuto borrado");
+      res.send("Producto borrado");
     } else {
       res.status(404).json({ message: "producto no encontrado" });
     }
