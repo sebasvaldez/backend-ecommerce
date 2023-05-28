@@ -8,8 +8,8 @@ const app = express();
 app.use(express.json());
 
 app.use(indexRoutes);
-app.use(productsRoutes);
-app.use(userRoutes);
+app.use("/api/", productsRoutes);
+app.use("/api/", userRoutes);
 
 app.listen(4000);
 console.log("Server is running on port 4000");
