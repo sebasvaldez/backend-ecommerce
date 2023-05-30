@@ -4,8 +4,6 @@ import userRoutes from "./routes/users.routes.js";
 import indexRoutes from "./routes/index.routes.js";
 
 
-import {PORT} from "./config.js";
-
 const app = express();
 
 app.use(express.json());

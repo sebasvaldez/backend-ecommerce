@@ -1,3 +1,4 @@
+import { query } from "express";
 import { pool } from "../db.js";
 
 //obtiene todos los productos cargados de la base de datos.
@@ -78,6 +79,22 @@ export const getProduct = async (req, res) => {
       return res.status(404).json({ message: "Producto no encontrado" });
     }
     res.json(rows[0]);
+  } catch (error) {
+    return res.status(500).json({ message: "Falló la consulta" });
+  }
+};
+
+//busca productos por palabras clave en las columnas de "nombre" y "descripcion"
+
+export const findProducts = async (req, res) => {
+  try {
+    const consulta = req.query.q;
+    const [rows] = await pool.query(
+      "SELECT * FROM productos WHERE nombre LIKE ? OR descripcion LIKE ?",
+      [`%${consulta}%`, `%${consulta}%`]
+    );
+
+    res.json(rows);
   } catch (error) {
     return res.status(500).json({ message: "Falló la consulta" });
   }
